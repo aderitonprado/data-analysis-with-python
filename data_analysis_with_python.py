@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
 
 # instalar a lib do pandas em seu projeto usando o comando:
 # pip install pandas
@@ -11,16 +9,13 @@
 import pandas as pd
 
 # Passo 1: Importar a base de dados
-tabela = pd.read_csv(r"D://Intensivao de Python/aula2/telecom_users.csv")
+tabela = pd.read_csv(r"D://seu-arquivo-csv/telecom_users.csv")
 
 # Passo 2: Visualizar a base de dados
 # - Entender quais informações estão disponiveis
 # - Descobrir os erros da base de dados]
 tabela = tabela.drop("Unnamed: 0", axis=1) # Remove uma coluna inutil - axis diz se remove uma linha (0) ou coluna (1)
 display(tabela) # visualizar a tabela (display pois usei o jupyter, em uma IDE seria print)
-
-
-# In[5]:
 
 
 # Passo 3: Tratamento dos dados (A informação que não te ajuda, te atrapalha)
@@ -36,10 +31,6 @@ tabela = tabela.dropna(how="any", axis=0) #dropna para localizar linhas ou colun
 
 print(tabela.info()) # visualizar a informação da tabela
 
-
-# In[10]:
-
-
 # Passo 4: Analise inicial
 # - Como estão nossos cancelamentos?
 print(tabela["Churn"].value_counts())
@@ -47,11 +38,13 @@ print("------------------")
 print(tabela["Churn"].value_counts(normalize=True).map("{:.1%}".format)) #normalize são os valores calculados em percentuais
 
 
-# In[15]:
-
-
 # Passo 5: Analise mais completa
 # - Comparar cada coluna da tabela com a coluna de cancelamento
+
+# - instalar a lib que utilizaremos com o comando:
+# - pip install plotly
+
+# importar a lib para o projeto
 import plotly.express as px
 
 # -- etapa 1: criar o grafico
@@ -65,13 +58,7 @@ for coluna in tabela.columns:
     grafico.show()
 
 
-# In[11]:
-
-
-
-
-
-# # Conclusões e Ações:
+# Conclusões e Ações:
 
 # - Clientes com contrato mensal tem muito mais chances de cancelar
 # -- Podemos fazer promoções para o cliente ir para o contrato anual
@@ -92,9 +79,4 @@ for coluna in tabela.columns:
 # 
 # - Clientes no boleto, tem muito mais chance de cancelar
 # -- Temos que fazer alguma ação para os clientes irem para outras formas de pagamento
-
-# In[ ]:
-
-
-
 
